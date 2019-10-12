@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+
+{% block title %}سجل الاختبارات{% endblock %}
+
+{% block main %}
+
+<section class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="breadcrumb">
+            <li><a class="text-primary" href="/home">الرئيسية</a></li>
+            <li class="active">سجل الاختبارات</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#fetchRecordModal">بحث عن سجل</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addRecordModal">اضافة سجل</button>
+            <a href="/alltestrecords" class="btn btn-primary">عرض جميع السجلات</a>
+        </div>
+    </div>
+</div>
+<br>
+
+
+<section class="container">
+    <div class="modal fade" id="fetchRecordModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">عرض سجل الاختبار</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="control-label" for="enterStudentID">ادخل رقم الطالب</label>
+                <input class="form-control" required id="enterStudentID" type="number" value="">
+            </div>
+            <div class="alert alert-dismissible alert-danger hidden" id="enterStudentIDError">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>.ادخل رقم الطالب للبحث عنه</strong>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
+            <a class="btn btn-primary" id="enterStudentIDConfirm" href="">تأكيد</a>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="addRecordModal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title">اضافة سجل اختبار</h4>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="control-label" for="enterRecordsQty">ادخل عدد سجلات الاختبار</label>
+                <input class="form-control" required id="enterRecordsQty" type="number" value="">
+            </div>
+            <div class="alert alert-dismissible alert-danger hidden" id="enterRecordsQtyError">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <strong>ادخل عدد السجلات</strong>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">الغاء</button>
+            <a class="btn btn-primary" id="enterRecordsQtyConfirm" href="">تأكيد</a>
+        </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+
+<script>
+
+$("#enterStudentIDConfirm").on("click", function(e) {
+    var sdtID = $("#enterStudentID").val();
+    if (sdtID == "") {
+        e.preventDefault();
+        $("#enterStudentIDError").removeClass("hidden");
+    } else {
+        $(this).attr("href", "/testrecord/" + sdtID);
+    }
+});
+
+$("#enterRecordsQtyConfirm").on("click", function(e) {
+    var recordQty = $("#enterRecordsQty").val();
+    if (recordQty == "") {
+        e.preventDefault();
+        $("#enterRecordsQtyError").removeClass("hidden");
+    } else {
+        $(this).attr("href", "/addtestrecords/" + recordQty);
+    }
+});
+
+if (window.innerWidth < 760){
+    $(".student-table-container").addClass("table-responsive");
+    $(".student-table-container").css("min-height", "220px;");
+}
+</script>
+
+
+
+{% endblock %}

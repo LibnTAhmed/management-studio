@@ -1,0 +1,7 @@
+Root User:
+Username: root
+Password: root
+
+Admin User:
+Username: admin
+Password: admin
