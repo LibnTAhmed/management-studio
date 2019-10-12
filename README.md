@@ -23,9 +23,9 @@ pip install -r requirements.txt
 python server.py
 ```
 #### Info
-* or edit SMS file and add your <path/to/your/server.py>
-* you still can build it using pywebview libaray
-* you can User login in User.txt
+* edit SMS file and add your <path/to/your/server.py>
+* you still can build it using pywebview library
+* you can find User login in User.txt
 #### this tool is created in arabic so Feel free to fork it and modify according to your language needs ...
 
 ### Credits and Licence and 
